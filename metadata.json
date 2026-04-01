@@ -1,0 +1,5 @@
+{
+  "name": "ControlRep",
+  "description": "Plataforma de gestão para representantes comerciais com integração de pedidos e cálculo de comissões.",
+  "requestFramePermissions": []
+}

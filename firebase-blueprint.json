@@ -1,0 +1,56 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Represents a system user.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["admin", "representative"] },
+        "name": { "type": "string" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Representada": {
+      "title": "Representada",
+      "description": "Represents a company represented by the user.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "commissionRate": { "type": "number" }
+      },
+      "required": ["id", "name", "commissionRate"]
+    },
+    "Pedido": {
+      "title": "Pedido",
+      "description": "Represents a sales order.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "clientId": { "type": "string" },
+        "representadaId": { "type": "string" },
+        "value": { "type": "number" },
+        "status": { "type": "string" },
+        "commission": { "type": "number" },
+        "date": { "type": "string", "format": "date" }
+      },
+      "required": ["id", "clientId", "representadaId", "value", "status", "date"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "User" },
+      "description": "User profiles."
+    },
+    "/representadas/{repId}": {
+      "schema": { "$ref": "Representada" },
+      "description": "Companies represented."
+    },
+    "/pedidos/{pedidoId}": {
+      "schema": { "$ref": "Pedido" },
+      "description": "Sales orders."
+    }
+  }
+}
