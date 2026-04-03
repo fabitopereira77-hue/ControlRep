@@ -18,32 +18,36 @@ const navItems = [
   { name: 'Configurações', path: '/configuracoes', icon: Settings },
 ];
 
+import { AuthProvider } from '@/components/auth-provider';
+
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="pt-BR">
       <body className="min-h-screen flex flex-col">
-        <header className="bg-blue-900 text-white p-4 shadow-md">
-          <nav className="container mx-auto flex justify-between items-center">
-            <Link href="/" className="text-2xl font-bold text-orange-500 flex items-center gap-2">
-              <div className="w-8 h-8 bg-orange-500 rounded-sm"></div> {/* Placeholder para logo */}
-              ControlRep
-            </Link>
-            <ul className="flex space-x-4 text-sm">
-              {navItems.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.path} className="hover:text-orange-500 flex items-center gap-1">
-                    <item.icon size={16} />
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </header>
-        <main className="flex-grow container mx-auto p-4">{children}</main>
-        <footer className="bg-blue-900 text-white p-4 text-center">
-          &copy; 2026 ControlRep
-        </footer>
+        <AuthProvider>
+          <header className="bg-blue-900 text-white p-4 shadow-md">
+            <nav className="container mx-auto flex justify-between items-center">
+              <Link href="/" className="text-2xl font-bold text-orange-500 flex items-center gap-2">
+                <div className="w-8 h-8 bg-orange-500 rounded-sm"></div> {/* Placeholder para logo */}
+                ControlRep
+              </Link>
+              <ul className="flex space-x-4 text-sm">
+                {navItems.map((item) => (
+                  <li key={item.name}>
+                    <Link href={item.path} className="hover:text-orange-500 flex items-center gap-1">
+                      <item.icon size={16} />
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </header>
+          <main className="flex-grow container mx-auto p-4">{children}</main>
+          <footer className="bg-blue-900 text-white p-4 text-center">
+            &copy; 2026 ControlRep
+          </footer>
+        </AuthProvider>
       </body>
     </html>
   );

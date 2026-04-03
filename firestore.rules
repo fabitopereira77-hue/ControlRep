@@ -73,7 +73,7 @@ service cloud.firestore {
     function isValidPedido(data) {
       return data.keys().hasAll(['id', 'clientId', 'representadaId', 'value', 'status', 'commission', 'date']) &&
              data.keys().hasOnly(['id', 'clientId', 'representadaId', 'value', 'status', 'commission', 'date']) &&
-             data.id is string &&
+             data.id is string && data.id.size() > 0 && data.id.size() < 100 &&
              data.clientId is string && data.clientId.size() > 0 && data.clientId.size() < 100 &&
              data.representadaId is string && data.representadaId.size() > 0 && data.representadaId.size() < 100 &&
              data.value is number && data.value > 0 &&
@@ -107,7 +107,8 @@ service cloud.firestore {
       allow create: if isAuthenticated() && isValidPedido(request.resource.data);
       allow update: if isAuthenticated() && isValidPedido(request.resource.data) && 
                       (request.resource.data.status == resource.data.status || 
-                       validStatusTransition(resource.data.status, request.resource.data.status));
+                       validStatusTransition(resource.data.status, request.resource.data.status)) &&
+                      (isAdmin() || request.resource.data.clientId == request.auth.uid);
     }
   }
 }

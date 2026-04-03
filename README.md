@@ -1,20 +1,16 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# ControlRep
 
-# Run and deploy your AI Studio app
+Plataforma de gestão para representantes comerciais.
 
-This contains everything you need to run your app locally.
+## Funcionalidades
+- Gestão de Pedidos
+- Gestão de Representadas
+- Cálculo de Comissões
+- Catálogo de Produtos
+- Comunicação
+- Treinamento
 
-View your app in AI Studio: https://ai.studio/apps/847ebf7f-aa4e-4eef-b2b8-9acb6e6aaa62
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Configuração para Produção
+1. Certifique-se de que todas as variáveis de ambiente estão configuradas no painel de segredos da plataforma.
+2. O Firebase está configurado e as regras de segurança estão aplicadas.
+3. O projeto utiliza Next.js 16+ e Turbopack.
